@@ -136,6 +136,9 @@ button:active {
 #scienceBtn { background: linear-gradient(135deg, #43a047, #1b5e20); }
 #geographyBtn { background: linear-gradient(135deg, #ff7043, #bf360c); }
 #worldBtn { background: linear-gradient(135deg, #26c6da, #006064); }
+#sportsBtn { background: linear-gradient(135deg, #ffa726, #e65100); }
+#gkBtn { background: linear-gradient(135deg, #5c6bc0, #283593); }
+#religionBtn { background: linear-gradient(135deg, #ec407a, #880e4f); }
 
 #playBtn {
     background: linear-gradient(135deg, #f4d35e, #d4af37);
@@ -403,4 +406,4 @@ button:disabled {
 
 .creditsText strong {
     color: #f4d35e;
-                                             }
+}

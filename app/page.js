@@ -6,7 +6,7 @@ import QuizScreen from "./components/QuizScreen";
 import ResultScreen from "./components/ResultScreen";
 import RankingScreen from "./components/RankingScreen";
 import CreditsScreen from "./components/CreditsScreen";
-import MenuButton from "./components/MenuButton";
+import Header from "./components/Header";
 import { getRoyalTitle } from "@/lib/ranks";
 import { useSound } from "@/lib/useSound";
 import { useBackgroundMusic } from "@/lib/useBackgroundMusic";
@@ -88,7 +88,7 @@ export default function Home() {
 
   return (
     <>
-      <MenuButton onNavigate={setScreen} />
+      <Header playerProfile={playerProfile} onNavigate={setScreen} />
 
       {screen === "home" && (
         <HomeScreen
@@ -128,4 +128,4 @@ export default function Home() {
       )}
     </>
   );
-    }
+}

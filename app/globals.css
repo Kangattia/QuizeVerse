@@ -131,14 +131,52 @@ button:active {
     transform: translateY(0) scale(0.98);
 }
 
-#historyBtn { background: linear-gradient(135deg, #2196f3, #0d47a1); }
-#bibleBtn { background: linear-gradient(135deg, #ab47bc, #4a148c); }
-#scienceBtn { background: linear-gradient(135deg, #43a047, #1b5e20); }
-#geographyBtn { background: linear-gradient(135deg, #ff7043, #bf360c); }
-#worldBtn { background: linear-gradient(135deg, #26c6da, #006064); }
-#sportsBtn { background: linear-gradient(135deg, #ffa726, #e65100); }
-#gkBtn { background: linear-gradient(135deg, #5c6bc0, #283593); }
-#religionBtn { background: linear-gradient(135deg, #ec407a, #880e4f); }
+/* Category grid cards - color per category via class instead of id */
+.categoryGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 6px 0 16px;
+}
+
+.categoryCard {
+    width: auto;
+    margin: 0;
+    padding: 14px 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+    border: 1.5px solid rgba(212, 175, 55, 0.25);
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.15;
+}
+
+.categoryCard .iconBadge {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.categoryCard.selected {
+    box-shadow: 0 0 0 2px #f4d35e, 0 6px 20px rgba(244, 211, 94, 0.35);
+}
+
+.cat-History { background: linear-gradient(135deg, rgba(33,150,243,0.35), rgba(13,71,161,0.35)); }
+.cat-Bible { background: linear-gradient(135deg, rgba(171,71,188,0.35), rgba(74,20,140,0.35)); }
+.cat-Science { background: linear-gradient(135deg, rgba(67,160,71,0.35), rgba(27,94,32,0.35)); }
+.cat-Geography { background: linear-gradient(135deg, rgba(255,112,67,0.35), rgba(191,54,12,0.35)); }
+.cat-World { background: linear-gradient(135deg, rgba(38,198,218,0.35), rgba(0,96,100,0.35)); }
+.cat-Sports { background: linear-gradient(135deg, rgba(255,167,38,0.35), rgba(230,81,0,0.35)); }
+.cat-GeneralKnowledge { background: linear-gradient(135deg, rgba(92,107,192,0.35), rgba(40,53,147,0.35)); }
+.cat-Religion { background: linear-gradient(135deg, rgba(236,64,122,0.35), rgba(136,14,79,0.35)); }
 
 #playBtn {
     background: linear-gradient(135deg, #f4d35e, #d4af37);
@@ -406,4 +444,188 @@ button:disabled {
 
 .creditsText strong {
     color: #f4d35e;
+}
+
+/* --- Shared game header (logo block, repeated above every screen) --- */
+.gameHeader {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.gameHeader h1 {
+    margin-bottom: 2px;
+}
+
+.gameHeader .subtitle {
+    margin-bottom: 8px;
+}
+
+.headerDivider {
+    color: #d4af37;
+    opacity: 0.6;
+    letter-spacing: 6px;
+    font-size: 12px;
+    margin-bottom: 14px;
+}
+
+/* --- Top-right crown / profile button --- */
+.crownButton {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 1000;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: rgba(30, 20, 55, 0.85);
+    border: 1.5px solid rgba(212, 175, 55, 0.5);
+    color: #f4d35e;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    margin: 0;
+    padding: 0;
+}
+
+.profilePanel {
+    position: fixed;
+    top: 72px;
+    right: 18px;
+    z-index: 999;
+    background: linear-gradient(160deg, rgba(30, 20, 55, 0.97), rgba(15, 10, 30, 0.98));
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: 16px;
+    padding: 16px;
+    width: 220px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    animation: fadeSlideIn 0.2s ease;
+    text-align: left;
+}
+
+.profileName {
+    font-weight: 800;
+    color: #f4d35e;
+    font-size: 16px;
+    margin: 0 0 8px;
+}
+
+.profileLine {
+    margin: 6px 0;
+    font-size: 14px;
+    color: #e6ddf7;
+}
+
+/* --- Quiz screen: pill-style info badges in a 2x2 grid --- */
+.infoGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.infoBadge {
+    width: auto;
+    margin: 0;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1.5px solid rgba(212, 175, 55, 0.35);
+    color: #f3ecff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.infoBadge.urgent {
+    color: #ff6b6b;
+    border-color: #ff6b6b;
+    animation: pulseUrgent 0.6s infinite alternate;
+}
+
+/* --- Question box with a small decorative divider above the text --- */
+.questionBox {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    border-radius: 18px;
+    padding: 20px;
+    margin: 4px 0 18px;
+}
+
+.questionBox::before {
+    content: "◆ 👑 ◆";
+    display: block;
+    text-align: center;
+    letter-spacing: 4px;
+    opacity: 0.55;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.questionTextNew {
+    margin: 0;
+    color: #f4d35e;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.35;
+}
+
+/* --- Lettered 2-column answer grid --- */
+.answerGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.answerOption {
+    width: auto;
+    margin: 0;
+    padding: 12px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+    background: linear-gradient(135deg, #2b2150, #1a1236);
+    color: #f3ecff;
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    border-radius: 14px;
+    font-size: 14px;
+}
+
+.answerOption:hover {
+    border-color: #f4d35e;
+}
+
+.answerOption.correct {
+    border-color: #43a047;
+    background: linear-gradient(135deg, #1f3d20, #16291a);
+}
+
+.answerOption.wrong {
+    border-color: #ff6b6b;
+    background: linear-gradient(135deg, #3d1f1f, #291616);
+}
+
+.letterBadge {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid #f4d35e;
+    color: #f4d35e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 13px;
+}
+
+.answerText {
+    flex: 1;
 }

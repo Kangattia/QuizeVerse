@@ -3,14 +3,14 @@
 import { useState } from "react";
 
 const CATEGORIES = [
-  { key: "History", label: "🌍 History", id: "historyBtn" },
-  { key: "Bible", label: "✝️ Bible", id: "bibleBtn" },
-  { key: "Science", label: "🔬 Science", id: "scienceBtn" },
-  { key: "Geography", label: "🌍 Geography", id: "geographyBtn" },
-  { key: "World", label: "🌐 World (Capitals & Flags)", id: "worldBtn" },
-  { key: "Sports", label: "⚽ Sports", id: "sportsBtn" },
-  { key: "GeneralKnowledge", label: "🧠 General Knowledge", id: "gkBtn" },
-  { key: "Religion", label: "🕊️ World Religions", id: "religionBtn" },
+  { key: "History", icon: "🌍", label: "History" },
+  { key: "Bible", icon: "✝️", label: "Bible" },
+  { key: "Science", icon: "🔬", label: "Science" },
+  { key: "Geography", icon: "🌍", label: "Geography" },
+  { key: "World", icon: "🌐", label: "World" },
+  { key: "Sports", icon: "⚽", label: "Sports" },
+  { key: "GeneralKnowledge", icon: "🧠", label: "General Knowledge" },
+  { key: "Religion", icon: "🕊️", label: "World Religions" },
 ];
 
 export default function HomeScreen({
@@ -33,8 +33,6 @@ export default function HomeScreen({
 
   return (
     <div className="container" id="homeScreen">
-      <h1>🌌 Quizverse</h1>
-
       <input
         id="playerNameInput"
         type="text"
@@ -43,27 +41,22 @@ export default function HomeScreen({
         onChange={(e) => setNameInput(e.target.value)}
       />
 
-      <div id="playerCard">
-        <p id="playerTitle">⚔️ Rank: {playerProfile.title}</p>
-        <p id="playerPoints">🏆 Total Points: {playerProfile.totalPoints}</p>
-        <p id="playerLevels">
-          📚 Levels Completed: {playerProfile.levelsCompleted}
-        </p>
+      <div className="categoryGrid">
+        {CATEGORIES.map((cat) => (
+          <button
+            key={cat.key}
+            className={
+              "categoryCard cat-" +
+              cat.key +
+              (selectedCategory === cat.key ? " selected" : "")
+            }
+            onClick={() => onSelectCategory(cat.key)}
+          >
+            <span className="iconBadge">{cat.icon}</span>
+            <span className="categoryLabel">{cat.label}</span>
+          </button>
+        ))}
       </div>
-
-      <p className="subtitle">A Universe of Knowledge Awaits</p>
-      <p id="selectedText">Selected: {selectedCategory}</p>
-
-      {CATEGORIES.map((cat) => (
-        <button
-          key={cat.key}
-          id={cat.id}
-          className={selectedCategory === cat.key ? "selected" : ""}
-          onClick={() => onSelectCategory(cat.key)}
-        >
-          {cat.label}
-        </button>
-      ))}
 
       <button id="playBtn" onClick={handlePlay}>
         ▶ Play

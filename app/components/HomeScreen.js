@@ -7,6 +7,7 @@ const CATEGORIES = [
   { key: "Bible", label: "✝️ Bible", id: "bibleBtn" },
   { key: "Science", label: "🔬 Science", id: "scienceBtn" },
   { key: "Geography", label: "🌍 Geography", id: "geographyBtn" },
+  { key: "World", label: "🌐 World (Capitals & Flags)", id: "worldBtn" },
 ];
 
 export default function HomeScreen({

@@ -135,6 +135,7 @@ button:active {
 #bibleBtn { background: linear-gradient(135deg, #ab47bc, #4a148c); }
 #scienceBtn { background: linear-gradient(135deg, #43a047, #1b5e20); }
 #geographyBtn { background: linear-gradient(135deg, #ff7043, #bf360c); }
+#worldBtn { background: linear-gradient(135deg, #26c6da, #006064); }
 
 #playBtn {
     background: linear-gradient(135deg, #f4d35e, #d4af37);
@@ -402,4 +403,4 @@ button:disabled {
 
 .creditsText strong {
     color: #f4d35e;
-}
+                                             }

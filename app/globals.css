@@ -4,18 +4,25 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     margin: 0;
-    padding: 0;
+    padding: 70px 0 30px;
     font-family: 'Poppins', Arial, sans-serif;
     background: radial-gradient(circle at top, #1b1035 0%, #0a0618 55%, #050310 100%);
+    background-attachment: fixed;
     color: #f3ecff;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
     position: relative;
     overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 /* soft floating glow orbs behind everything, purely decorative */
@@ -52,11 +59,18 @@ body::after {
     background: linear-gradient(160deg, rgba(30, 20, 55, 0.85), rgba(15, 10, 30, 0.9));
     border: 1px solid rgba(212, 175, 55, 0.35);
     border-radius: 24px;
-    padding: 28px 24px;
+    padding: 22px 18px;
     text-align: center;
     backdrop-filter: blur(14px);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(212, 175, 55, 0.08) inset;
     animation: fadeSlideIn 0.5s ease;
+}
+
+@media (max-width: 360px) {
+    .container { padding: 18px 14px; }
+    h1 { font-size: 28px; }
+    .categoryCard { font-size: 12px; padding: 12px 8px; }
+    .categoryCard .iconBadge { width: 30px; height: 30px; font-size: 15px; }
 }
 
 @keyframes fadeSlideIn {
@@ -330,22 +344,32 @@ button:disabled {
     to { box-shadow: 0 0 16px rgba(255, 107, 107, 0.5); }
 }
 
-#playerCard {
-    background: rgba(244, 211, 94, 0.06);
+.playerCard {
+    background: rgba(244, 211, 94, 0.08);
     border: 1px solid rgba(212, 175, 55, 0.35);
-    border-radius: 16px;
-    padding: 16px;
-    margin: 15px 0;
+    border-radius: 14px;
+    padding: 10px 14px;
+    margin: 10px 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px 12px;
 }
 
-#playerCard p {
-    margin: 8px 0;
+.playerCardTitle {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f4d35e;
+}
+
+.playerCardStats {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
     font-weight: 600;
+    color: #cbd5f5;
 }
-
-#playerTitle { font-size: 18px; color: #f4d35e; }
-#playerPoints { color: #90caf9; }
-#playerLevels { color: #81c784; }
 
 #pointsPopup {
     position: fixed;

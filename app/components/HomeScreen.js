@@ -8,6 +8,9 @@ const CATEGORIES = [
   { key: "Science", label: "🔬 Science", id: "scienceBtn" },
   { key: "Geography", label: "🌍 Geography", id: "geographyBtn" },
   { key: "World", label: "🌐 World (Capitals & Flags)", id: "worldBtn" },
+  { key: "Sports", label: "⚽ Sports", id: "sportsBtn" },
+  { key: "GeneralKnowledge", label: "🧠 General Knowledge", id: "gkBtn" },
+  { key: "Religion", label: "🕊️ World Religions", id: "religionBtn" },
 ];
 
 export default function HomeScreen({
@@ -72,4 +75,4 @@ export default function HomeScreen({
       <p className="version">Version 0.1</p>
     </div>
   );
-          }
+}

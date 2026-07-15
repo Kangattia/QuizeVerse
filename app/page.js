@@ -88,7 +88,7 @@ export default function Home() {
 
   return (
     <>
-      <Header playerProfile={playerProfile} onNavigate={setScreen} />
+      <Header onNavigate={setScreen} />
 
       {screen === "home" && (
         <HomeScreen

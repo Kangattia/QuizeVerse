@@ -41,6 +41,14 @@ export default function HomeScreen({
         onChange={(e) => setNameInput(e.target.value)}
       />
 
+      <div className="playerCard">
+        <span className="playerCardTitle">⚔️ {playerProfile.title}</span>
+        <div className="playerCardStats">
+          <span>🏆 {playerProfile.totalPoints} pts</span>
+          <span>📚 {playerProfile.levelsCompleted} levels</span>
+        </div>
+      </div>
+
       <div className="categoryGrid">
         {CATEGORIES.map((cat) => (
           <button

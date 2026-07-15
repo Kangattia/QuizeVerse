@@ -162,39 +162,48 @@ export default function QuizScreen({
 
   if (!currentQuestion) return null;
 
+  const urgent = timeLeft <= 6;
+
   return (
     <div className="container" id="quizScreen">
       <PointsPopup points={popupPoints} />
 
-      <h2 id="categoryTitle">{currentQuestion.category}</h2>
-      <button id="backBtn" onClick={onBack}>
-        🏠 Back
-      </button>
+      <div className="infoGrid">
+        <button className="infoBadge" onClick={onBack}>
+          🏠 Back
+        </button>
+        <div className="infoBadge">⭐ Score: {score}</div>
+        <div className="infoBadge">
+          📋 Question {currentIndex + 1} of {questions.length}
+        </div>
+        <div className={"infoBadge" + (urgent ? " urgent" : "")}>
+          {urgent ? "😅" : "⏱️"} Time: {timeLeft}
+        </div>
+      </div>
 
-      <p id="scoreText">Score: {score}</p>
-      <p id="questionCounter">
-        Question {currentIndex + 1} of {questions.length}
-      </p>
-      <p id="timerText">⏱️ Time: {timeLeft}</p>
-      <h3 id="questionText">{currentQuestion.question}</h3>
+      <div className="questionBox">
+        <h3 className="questionTextNew">{currentQuestion.question}</h3>
+      </div>
 
-      {currentQuestion.answers.map((answerText, index) => {
-        const state = feedback[index];
-        const label =
-          state === "correct" ? "✅ " + answerText
-          : state === "wrong" ? "❌ " + answerText
-          : answerText;
-        return (
-          <button
-            key={index}
-            className={"answerBtn" + (state ? " " + state : "")}
-            disabled={answered}
-            onClick={() => handleAnswer(index)}
-          >
-            {label}
-          </button>
-        );
-      })}
+      <div className="answerGrid">
+        {currentQuestion.answers.map((answerText, index) => {
+          const state = feedback[index];
+          const letter = ["A", "B", "C", "D"][index];
+          const badgeContent =
+            state === "correct" ? "✓" : state === "wrong" ? "✗" : letter;
+          return (
+            <button
+              key={index}
+              className={"answerOption" + (state ? " " + state : "")}
+              disabled={answered}
+              onClick={() => handleAnswer(index)}
+            >
+              <span className="letterBadge">{badgeContent}</span>
+              <span className="answerText">{answerText}</span>
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
-  }
+}

@@ -1,0 +1,26 @@
+{
+  "accountAssociation": {
+    "header": "REPLACE_ME_IN_PHASE_4",
+    "payload": "REPLACE_ME_IN_PHASE_4",
+    "signature": "REPLACE_ME_IN_PHASE_4"
+  },
+  "miniapp": {
+    "version": "1",
+    "name": "Quizverse",
+    "homeUrl": "https://YOUR-APP-URL.vercel.app",
+    "iconUrl": "https://YOUR-APP-URL.vercel.app/icon.png",
+    "splashImageUrl": "https://YOUR-APP-URL.vercel.app/splash.png",
+    "splashBackgroundColor": "#0a0618",
+    "subtitle": "A trivia game across History, Science, Sports & more",
+    "description": "Quizverse is a trivia game spanning History, Science, Geography, Sports, World Religions and more, with points, ranks, and a shared leaderboard.",
+    "screenshotUrls": [],
+    "primaryCategory": "games",
+    "tags": ["trivia", "quiz", "game", "education"],
+    "heroImageUrl": "https://YOUR-APP-URL.vercel.app/hero.png",
+    "tagline": "A Universe of Knowledge Awaits",
+    "ogTitle": "Quizverse",
+    "ogDescription": "A trivia game spanning History, Science, Sports, Religion and more.",
+    "ogImageUrl": "https://YOUR-APP-URL.vercel.app/hero.png",
+    "noindex": false
+  }
+}

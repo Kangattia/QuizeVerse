@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useMiniKit } from "@coinbase/onchainkit/minikit";
 import HomeScreen from "./components/HomeScreen";
 import QuizScreen from "./components/QuizScreen";
 import ResultScreen from "./components/ResultScreen";
@@ -30,6 +31,15 @@ export default function Home() {
   const loadedFromStorage = useRef(false);
   const play = useSound();
   const music = useBackgroundMusic();
+  const { setFrameReady, isFrameReady } = useMiniKit();
+
+  // Tells Base App / Farcaster the mini app has finished loading and is
+  // ready to be shown. Harmless no-op when running as a normal website.
+  useEffect(() => {
+    if (!isFrameReady) {
+      setFrameReady();
+    }
+  }, [setFrameReady, isFrameReady]);
 
   // Load saved profile once, on the client only
   useEffect(() => {

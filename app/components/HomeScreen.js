@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { Wallet, ConnectWallet } from "@coinbase/onchainkit/wallet";
+import { Avatar, Name } from "@coinbase/onchainkit/identity";
 
 const CATEGORIES = [
   { key: "History", icon: "🌍", label: "History" },
@@ -19,27 +20,34 @@ export default function HomeScreen({
   onSelectCategory,
   onPlay,
   onShowRanking,
+  isConnected,
+  address,
 }) {
-  const [nameInput, setNameInput] = useState(playerProfile.username || "");
-
-  function handlePlay() {
-    const trimmed = nameInput.trim();
-    if (trimmed === "") {
-      alert("🌌 Enter your explorer name to continue!");
-      return;
-    }
-    onPlay(trimmed);
-  }
-
   return (
     <div className="container" id="homeScreen">
-      <input
-        id="playerNameInput"
-        type="text"
-        placeholder="Enter your explorer name"
-        value={nameInput}
-        onChange={(e) => setNameInput(e.target.value)}
-      />
+      {!isConnected ? (
+        <div className="walletGate">
+          <p className="walletGateText">
+            🔐 Connect your wallet to play Quizverse and save your progress
+            onchain.
+          </p>
+          <Wallet>
+            <ConnectWallet>
+              <Avatar className="h-6 w-6" />
+              <Name />
+            </ConnectWallet>
+          </Wallet>
+        </div>
+      ) : (
+        <div className="walletConnected">
+          <Wallet>
+            <ConnectWallet>
+              <Avatar className="h-5 w-5" />
+              <Name />
+            </ConnectWallet>
+          </Wallet>
+        </div>
+      )}
 
       <div className="playerCard">
         <span className="playerCardTitle">⚔️ {playerProfile.title}</span>
@@ -66,8 +74,8 @@ export default function HomeScreen({
         ))}
       </div>
 
-      <button id="playBtn" onClick={handlePlay}>
-        ▶ Play
+      <button id="playBtn" onClick={onPlay} disabled={!isConnected}>
+        {isConnected ? "▶ Play" : "🔒 Connect Wallet to Play"}
       </button>
       <button id="rankingBtn" onClick={onShowRanking}>
         🏆 Leaderboard

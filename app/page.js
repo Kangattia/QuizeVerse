@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useAccount } from "wagmi";
 import { useMiniKit } from "@coinbase/onchainkit/minikit";
 import HomeScreen from "./components/HomeScreen";
 import QuizScreen from "./components/QuizScreen";
@@ -32,6 +33,7 @@ export default function Home() {
   const play = useSound();
   const music = useBackgroundMusic();
   const { setFrameReady, isFrameReady } = useMiniKit();
+  const { address, isConnected } = useAccount();
 
   // Tells Base App / Farcaster the mini app has finished loading and is
   // ready to be shown. Harmless no-op when running as a normal website.
@@ -80,10 +82,12 @@ export default function Home() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerProfile.totalPoints]);
 
-  function handlePlay(name) {
+  function handlePlay() {
+    if (!isConnected || !address) return; // guarded in the UI, but double-check here too
+    const shortAddress = address.slice(0, 6) + "..." + address.slice(-4);
     setPlayerProfile((prev) => ({
       ...prev,
-      username: name,
+      username: shortAddress,
       title: getRoyalTitle(prev.totalPoints),
     }));
     play("click");
@@ -107,6 +111,8 @@ export default function Home() {
           onSelectCategory={setSelectedCategory}
           onPlay={handlePlay}
           onShowRanking={() => setScreen("ranking")}
+          isConnected={isConnected}
+          address={address}
         />
       )}
 

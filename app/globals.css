@@ -653,3 +653,32 @@ button:disabled {
 .answerText {
     flex: 1;
 }
+
+/* --- Wallet connection gate on the home screen --- */
+.walletGate {
+    background: rgba(255, 107, 107, 0.08);
+    border: 1.5px solid rgba(255, 107, 107, 0.4);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 4px;
+    text-align: center;
+}
+
+.walletGateText {
+    font-size: 13px;
+    color: #f3ecff;
+    margin: 0 0 12px;
+    line-height: 1.4;
+}
+
+.walletConnected {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4px;
+}
+
+/* OnchainKit's ConnectWallet button - align it with the app's own button style */
+.walletGate button,
+.walletConnected button {
+    border-radius: 14px !important;
+}

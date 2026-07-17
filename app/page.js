@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import { getRoyalTitle } from "@/lib/ranks";
 import { useSound } from "@/lib/useSound";
 import { useBackgroundMusic } from "@/lib/useBackgroundMusic";
+import { PASSING_SCORE } from "@/lib/payment";
 
 const STORAGE_KEY = "quizverseProfile";
 
@@ -34,6 +35,13 @@ export default function Home() {
   const music = useBackgroundMusic();
   const { setFrameReady, isFrameReady } = useMiniKit();
   const { address, isConnected } = useAccount();
+
+  // Payment gates: hasPaidSession unlocks play once per visit; needsContinueFee
+  // re-locks play whenever a level finishes with a score below PASSING_SCORE,
+  // and is checked ahead of hasPaidSession so it can't be bypassed by going
+  // back to the home screen.
+  const [hasPaidSession, setHasPaidSession] = useState(false);
+  const [needsContinueFee, setNeedsContinueFee] = useState(false);
 
   // Tells Base App / Farcaster the mini app has finished loading and is
   // ready to be shown. Harmless no-op when running as a normal website.
@@ -97,7 +105,18 @@ export default function Home() {
 
   function handleFinish(score, total) {
     setLastResult({ score, total });
+    setNeedsContinueFee(score < PASSING_SCORE);
     setScreen("result");
+  }
+
+  // Called after either the session-start fee or the pay-to-continue fee
+  // succeeds. Clears whichever gate was active and starts/resumes play.
+  function handlePaidAndPlay() {
+    setHasPaidSession(true);
+    setNeedsContinueFee(false);
+    play("click");
+    music.start();
+    setScreen("quiz");
   }
 
   return (
@@ -113,6 +132,9 @@ export default function Home() {
           onShowRanking={() => setScreen("ranking")}
           isConnected={isConnected}
           address={address}
+          hasPaidSession={hasPaidSession}
+          needsContinueFee={needsContinueFee}
+          onPaidAndPlay={handlePaidAndPlay}
         />
       )}
 
@@ -132,6 +154,8 @@ export default function Home() {
           total={lastResult.total}
           onRestart={() => setScreen("quiz")}
           onHome={() => setScreen("home")}
+          needsContinueFee={needsContinueFee}
+          onPaidAndPlay={handlePaidAndPlay}
         />
       )}
 

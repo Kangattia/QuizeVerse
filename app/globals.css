@@ -682,3 +682,17 @@ button:disabled {
 .walletConnected button {
     border-radius: 14px !important;
 }
+
+/* --- Pay-to-play / pay-to-continue gate --- */
+.payGate {
+    background: rgba(244, 211, 94, 0.08);
+    border: 1.5px solid rgba(212, 175, 55, 0.4);
+    border-radius: 16px;
+    padding: 16px;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.payGate .walletGateText {
+    margin-bottom: 12px;
+}

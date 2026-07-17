@@ -4,6 +4,9 @@ import { Providers } from "./providers";
 export const metadata = {
   title: "Quizverse",
   description: "A Universe of Knowledge Awaits",
+  other: {
+    "base:app_id": "6a59e949a0fe5cd3aaa831ed",
+  },
 };
 
 export const viewport = {
